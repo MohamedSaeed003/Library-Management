@@ -1,0 +1,44 @@
+server:
+  servlet:
+    context-path: /api/v1/
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/Library-Mangment
+    username: postgres
+    password: 1122
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  mail:
+    host: localhost
+    port: 1025
+    username: happy
+    password: happy
+    properties:
+      mail:
+        smtp:
+          trust: "*"
+        auth: true
+        starttls:
+          enable: ture
+        connectiontimeout: 5000
+        timeout: 3000
+        writetimeout: 5000
+
+  application:
+    security:
+      jwt:
+        secret-key: 9f11a23ff86b5c702dca3a343f658e9e134c2dd235cfa59f
+        expiration: 86400000
+    mailing:
+      frontend:
+        activation-url: http://localhost:4040/activate-account

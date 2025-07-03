@@ -1,0 +1,185 @@
+{
+  "info": {
+    "name": "Library Management API",
+    "_postman_id": "12345678-aaaa-bbbb-cccc-ddddeeeeffff",
+    "description": "Postman collection for Library Management System - Spring Boot backend only.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"password123\",\n  \"fullName\": \"John Doe\"\n}"
+            },
+            "url": { "raw": "/api/v1/auth/register", "path": [ "api", "v1", "auth", "register" ] }
+          }
+        },
+        {
+          "name": "Authenticate",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": { "raw": "/api/v1/auth/authenticate", "path": [ "api", "v1", "auth", "authenticate" ] }
+          }
+        },
+        {
+          "name": "Activate Account",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "/api/v1/auth/activate-account?token=some-token",
+              "path": [ "api", "v1", "auth", "activate-account" ],
+              "query": [{ "key": "token", "value": "some-token" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin - Users",
+      "item": [
+        {
+          "name": "Get All Users",
+          "request": { "method": "GET", "url": { "raw": "/api/v1/admin/users", "path": [ "api", "v1", "admin", "users" ] } }
+        },
+        {
+          "name": "Get User By ID",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "/api/v1/admin/users/1", "path": [ "api", "v1", "admin", "users", "1" ] }
+          }
+        },
+        {
+          "name": "Update User Roles",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "[\"ADMIN\", \"LIBRARIAN\"]"
+            },
+            "url": { "raw": "/api/v1/admin/users/1/roles", "path": [ "api", "v1", "admin", "users", "1", "roles" ] }
+          }
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "/api/v1/admin/users/1", "path": [ "api", "v1", "admin", "users", "1" ] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Books",
+      "item": [
+        {
+          "name": "Get All Books",
+          "request": { "method": "GET", "url": { "raw": "/api/v1/books", "path": [ "api", "v1", "books" ] } }
+        },
+        {
+          "name": "Create Book",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Clean Code\",\n  \"isbn\": \"9780132350884\",\n  \"publicationYear\": 2008,\n  \"edition\": 1,\n  \"language\": \"English\",\n  \"summary\": \"Agile craftsmanship.\",\n  \"bookCover\": \"cover.jpg\",\n  \"authors\": [1],\n  \"categories\": [2],\n  \"publisher\": 1\n}"
+            },
+            "url": { "raw": "/api/v1/books", "path": [ "api", "v1", "books" ] }
+          }
+        },
+        {
+          "name": "Get Book By ID",
+          "request": { "method": "GET", "url": { "raw": "/api/v1/books/1", "path": [ "api", "v1", "books", "1" ] } }
+        },
+        {
+          "name": "Update Book",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{ /* same as POST */ }" },
+            "url": { "raw": "/api/v1/books/1", "path": [ "api", "v1", "books", "1" ] }
+          }
+        },
+        {
+          "name": "Delete Book",
+          "request": { "method": "DELETE", "url": { "raw": "/api/v1/books/1", "path": [ "api", "v1", "books", "1" ] } }
+        }
+      ]
+    },
+    {
+      "name": "Borrowings",
+      "item": [
+        {
+          "name": "Get All Borrowings",
+          "request": { "method": "GET", "url": { "raw": "/api/v1/borrowings", "path": [ "api", "v1", "borrowings" ] } }
+        },
+        {
+          "name": "Get Borrowing By ID",
+          "request": { "method": "GET", "url": { "raw": "/api/v1/borrowings/1", "path": [ "api", "v1", "borrowings", "1" ] } }
+        },
+        {
+          "name": "Borrow Book",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"memberId\": 1,\n  \"bookIds\": [1, 2]\n}"
+            },
+            "url": { "raw": "/api/v1/borrowings/borrow", "path": [ "api", "v1", "borrowings", "borrow" ] }
+          }
+        },
+        {
+          "name": "Return Book",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "/api/v1/borrowings/return/1", "path": [ "api", "v1", "borrowings", "return", "1" ] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Authors",
+      "item": [
+        { "name": "Get All Authors", "request": { "method": "GET", "url": { "raw": "/api/v1/authors", "path": [ "api", "v1", "authors" ] } } },
+        { "name": "Get Author By ID", "request": { "method": "GET", "url": { "raw": "/api/v1/authors/1", "path": [ "api", "v1", "authors", "1" ] } } },
+        { "name": "Create Author", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{ \"fullName\": \"Robert C. Martin\" }" }, "url": { "raw": "/api/v1/authors", "path": [ "api", "v1", "authors" ] } } },
+        { "name": "Update Author", "request": { "method": "PUT", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{ \"fullName\": \"Uncle Bob\" }" }, "url": { "raw": "/api/v1/authors/1", "path": [ "api", "v1", "authors", "1" ] } } },
+        { "name": "Delete Author", "request": { "method": "DELETE", "url": { "raw": "/api/v1/authors/1", "path": [ "api", "v1", "authors", "1" ] } } }
+      ]
+    },
+    {
+      "name": "Categories",
+      "item": [
+        { "name": "Get All Categories", "request": { "method": "GET", "url": { "raw": "/api/v1/categories", "path": [ "api", "v1", "categories" ] } } },
+        { "name": "Get Category By ID", "request": { "method": "GET", "url": { "raw": "/api/v1/categories/1", "path": [ "api", "v1", "categories", "1" ] } } },
+        { "name": "Create Category", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{ \"categoryName\": \"Programming\" }" }, "url": { "raw": "/api/v1/categories", "path": [ "api", "v1", "categories" ] } } },
+        { "name": "Update Category", "request": { "method": "PUT", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{ \"categoryName\": \"Software Engineering\" }" }, "url": { "raw": "/api/v1/categories/1", "path": [ "api", "v1", "categories", "1" ] } } },
+        { "name": "Delete Category", "request": { "method": "DELETE", "url": { "raw": "/api/v1/categories/1", "path": [ "api", "v1", "categories", "1" ] } } }
+      ]
+    },
+    {
+      "name": "Publishers",
+      "item": [
+        { "name": "Get All Publishers", "request": { "method": "GET", "url": { "raw": "/api/v1/publishers", "path": [ "api", "v1", "publishers" ] } } },
+        { "name": "Get Publisher By ID", "request": { "method": "GET", "url": { "raw": "/api/v1/publishers/1", "path": [ "api", "v1", "publishers", "1" ] } } },
+        { "name": "Create Publisher", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{ \"publisherName\": \"Pearson\" }" }, "url": { "raw": "/api/v1/publishers", "path": [ "api", "v1", "publishers" ] } } },
+        { "name": "Update Publisher", "request": { "method": "PUT", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{ \"publisherName\": \"O'Reilly Media\" }" }, "url": { "raw": "/api/v1/publishers/1", "path": [ "api", "v1", "publishers", "1" ] } } },
+        { "name": "Delete Publisher", "request": { "method": "DELETE", "url": { "raw": "/api/v1/publishers/1", "path": [ "api", "v1", "publishers", "1" ] } } }
+      ]
+    }
+  ]
+}
