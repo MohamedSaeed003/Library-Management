@@ -1,0 +1,31 @@
+-- Roles
+INSERT INTO role (id, role_name) VALUES (1, 'ADMIN');
+INSERT INTO role (id, role_name) VALUES (2, 'LIBRARIAN');
+INSERT INTO role (id, role_name) VALUES (3, 'STAFF');
+INSERT INTO role (id, role_name) VALUES (4, 'MEMBER');
+
+-- Users
+INSERT INTO user (id, full_name, email, password, enabled) 
+VALUES (1, 'Admin User', 'admin@example.com', '$2a$10$hashedpassword', true);
+
+-- User Roles (Join Table)
+INSERT INTO user_roles (user_id, roles_id) VALUES (1, 1);
+
+-- Authors
+INSERT INTO author (id, full_name) VALUES (1, 'Robert C. Martin');
+
+-- Categories
+INSERT INTO category (id, category_name) VALUES (1, 'Programming');
+
+-- Publishers
+INSERT INTO publisher (id, publisher_name) VALUES (1, 'Pearson');
+
+-- Books
+INSERT INTO book (id, title, isbn, publication_year, edition, language, summary, book_cover, publisher_id)
+VALUES (1, 'Clean Code', '9780132350884', 2008, 1, 'English', 'A Handbook of Agile Software Craftsmanship.', 'cover.jpg', 1);
+
+-- Book-Author
+INSERT INTO book_authors (book_id, authors_id) VALUES (1, 1);
+
+-- Book-Category
+INSERT INTO book_categories (book_id, categories_id) VALUES (1, 1);
